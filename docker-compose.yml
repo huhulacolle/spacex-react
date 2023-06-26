@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  dev:
+    container_name: spacex_dev
+    image: spacex:dev
+    build:
+      context: .
+      target: dev
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/develop
+    ports:
+      - 5173:5173
+    tty: true
+
+  prod:
+    container_name: spacex
+    image: spacex:prod
+    build:
+      context: .
+      target: prod
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:80
